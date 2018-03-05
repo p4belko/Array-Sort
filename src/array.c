@@ -1,10 +1,7 @@
 int * allocate_arr(int *arr, int n){
 	//TODO: code this
 	//mozno calloc? (mal by zapisovat contiguous, mozno realnejsie casy bez pristupu na disk)
-	//printf("SMERNIKY_alloc\n");
-	//printf("%d\n", arr);
 	arr = (int*)malloc(n*sizeof(int));
-	//printf("%d\n", arr);
 	return arr;
 }
 
@@ -15,20 +12,20 @@ void fill_arr(int *arr1, int *arr2, int n, int scope){
 		//TODO: inak generovat random?
 		//*(a+i) = i; 
 		arr1[i] = rand() % scope + 1; 
-		//printf("SMERNIKY_fill\n");
-		//printf("%d %d\n", arr1,arr2);
 		//printf("%d\n", arr1[i] );
 		arr2[i] = arr1[i];
 	}
 }
 
 int check_arr(int *arr, int n){
+	//TODO: co keby sa tu vracal rovno idext
+	// tj.. ak -1 == OK, inak >=0 tj, index zleho prvku
 	for (int i = 0; i < n-1; ++i)
 	{
 		//printf("vs: %d %d\n", *(arr+i), *(arr+i+1) );
-		if ( *(arr+i) > *(arr+i+1)) return 0; //0->9
+		if ( *(arr+i) > *(arr+i+1)) return i+1; //0->9
 	}
-	return 1;
+	return -1;
 }
 
 void vypis_arr(int *arr, int n){
