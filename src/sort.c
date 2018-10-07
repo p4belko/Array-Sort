@@ -1,6 +1,5 @@
 void shell_sort(int *arr, int n){
 
-	//code me
 	int i, j, k, tmp;
     for (i = n / 2; i > 0; i = i / 2)
     {
@@ -8,8 +7,9 @@ void shell_sort(int *arr, int n){
         {
             for(k = j - i; k >= 0; k = k - i)
             {
-                if (arr[k+i] >= arr[k])
+                if (arr[k+i] >= arr[k]){
                     break;
+                }   
                 else
                 {
                     tmp = arr[k];
@@ -37,5 +37,4 @@ void insertion_sort(int *arr, int n){
        }
        arr[j+1] = key;
    }
-
 }
