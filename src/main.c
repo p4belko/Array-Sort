@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <time.h>		
-#include <stdlib.h>		//rand() srand()
-//#include <stdbool.h>	//bool 
-//poukazat na neschopnost C ze nema bool 
-//#include "cJSON.h"
+#include <stdlib.h>		
 #include "array.c"
 #include "sort.c"
 
@@ -18,10 +15,6 @@ void show_menu(){
 	printf("e - koniec\n");						//end
 }
 void run(int **arr1, int **arr2, int n, int x, int count){
-	//TODO: tu sa spusti vytvorenie, naplnenie, sort, check vypis;
-	//ma to: vypytat pocet opakovani, velkost pola, ohranicenia generovania, 
-	// a potom v cykle plnit tieto polia a triedit  a vysledny cas 
-	//zapisat do suboru	
 
 	int test_result;
 	float avg_time1 = 0.0, avg_time2 = 0.0;
@@ -30,18 +23,12 @@ void run(int **arr1, int **arr2, int n, int x, int count){
     char* c_time_string;
 
     FILE *file_vysledky;
-    /*char *out;
-   	cJSON *root, *runs, *run;*/
 
     current_time = time(NULL);
     c_time_string = ctime(&current_time);
 
   	file_vysledky = fopen ("history.log", "a");
-	/*char singleLine[150];
-  	while(!feof(file_vysledky)){
-  		fgets(singleLine, 150, file_vysledky);
-  		puts(singleLine);
-  	}*/
+
 	
 	*arr1 = allocate_arr(*arr1,n);
 	*arr2 = allocate_arr(*arr2,n);
@@ -103,25 +90,6 @@ void run(int **arr1, int **arr2, int n, int x, int count){
 	fprintf(file_vysledky, "insertion_sort:  %f\n", (((float)avg_time2)/CLOCKS_PER_SEC)/count);
 	fprintf(file_vysledky, "-------------------------------------------------------\n");
 	fclose(file_vysledky);
-
-	/*CREATE JSON*/
-	/* create root node and array */
-	//root = cJSON_CreateObject();
-	//runs = cJSON_CreateArray();
-	/* add cars array to root */
-	//cJSON_AddItemToObject(root, "runs", runs);
-    /* add 1st car to cars array */
-    /*cJSON_AddItemToArray(runs, run = cJSON_CreateObject());
-    cJSON_AddItemToObject(run, "Date", cJSON_CreateString(c_time_string));
-    cJSON_AddItemToObject(run, "n", cJSON_CreateString(n));
-    cJSON_AddItemToObject(run, "x", cJSON_CreateString(x));
-    cJSON_AddItemToObject(run, "count", cJSON_CreateString(count));
-    cJSON_AddItemToObject(run, "shell_sort", cJSON_CreateString((((float)avg_time1)/CLOCKS_PER_SEC)/count));
-    cJSON_AddItemToObject(run, "insertion_sort", cJSON_CreateString((((float)avg_time1)/CLOCKS_PER_SEC)/count));
-    
-    out = cJSON_Print(root);
-    printf("%s\n",out);
-	*/
 }
 void create(int **arr1, int **arr2, int n, int x){
 	*arr1 = allocate_arr(*arr1,n);
@@ -137,9 +105,6 @@ void print(int *arr1, int *arr2, int n){
 	printf("\n");
 }
 void sort(int **arr1, int **arr2, int n){
-	//TODO: sortc
-	
-		
 	/*TEST SORTING*/
 	/*Shell sort*/
 	clock_t time;
@@ -152,7 +117,6 @@ void sort(int **arr1, int **arr2, int n){
 	else{
 		printf("Pole[1] NIE JE zoradene\n");
 	}
-	//avg_time1 = avg_time1 + time;
 	printf("SHELLSORT trval %f \n", ((float)time)/CLOCKS_PER_SEC);
 	
 	/*Insertion sort*/
@@ -165,12 +129,9 @@ void sort(int **arr1, int **arr2, int n){
 	else{
 		printf("Pole[2] NIE JE zoradene\n");
 	}
-	//avg_time2 = avg_time2 + time;
 	printf("INSERTIONSORT trval %f \n\n", ((float)time)/CLOCKS_PER_SEC);
 }
 void test(int **arr1, int **arr2, int n){
-	//TODO: test
-	//TODO: print index, print into file? - mozno staci iba pri automatickom spusteni
 	int test_result;
 
 	test_result = check_arr(*arr1,n);
@@ -192,7 +153,6 @@ void test(int **arr1, int **arr2, int n){
 
 int main()
 {
-	//clock_t time;
 
 	int *p_arr1, *p_arr2;
 	int n = 0,count;
@@ -213,7 +173,6 @@ int main()
 			scanf("%d", &count);
 			run(&p_arr1, &p_arr2, n, x, count);
 			printf("R - DONE\n");
-			//return 1;
 		}else if (menu_option == 'c'){
 			printf("Pocet prvkov v poli:\n");
 			scanf("%d", &n);
@@ -249,7 +208,6 @@ int main()
 		}
 	}
 			
-	//fly you fool
 	free(p_arr1);
 	free(p_arr2);
 	return 1;
